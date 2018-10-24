@@ -1,0 +1,102 @@
+Exercices PHP & HTML
+--------------------
+
+1. Créez un formulaire où l'on peut remplir son prénom et l'envoyer et un script PHP qui affiche 'Bonjour (votre prénom)!' dans un h1.
+
+Mini Challenge : Mettez le formulaire et le script PHP dans la même page sans que cela génère des messages d'erreurs.
+Tips : isset()
+
+
+---
+
+
+2. Créez un formulaire où l'on peut remplir son âge et l'envoyer et un script PHP qui affiche 'Vous êtes né(e) en (1976)'.
+Ceci n'a pas besoin d'être précis au jour près (année actuelle - année de naissance).
+
+Mini Challenge : rendez l'année cliquable via un <a href> qui point vers la bonne page Wikipedia.
+Tips : les pages wikipedia des années sont toujours au format https://en.wikipedia.org/wiki/1976
+
+Challenge : Assurez-vous que ce script fonctionnera l'année prochaine et les suivantes aussi.
+Tips : date()
+
+Hardcore : Le formulaire accepte une date de naissance et le calcul se base sur la date du jour
+Tips : DateTime::diff()
+
+
+---
+
+
+3. Faîtes une boucle qui affiche tous les chiffres de 50 à 42.
+
+Mini Challenge : le tout dans une liste à puces
+
+Challenge : et affichez à chaque fois s'ils sont pairs ou impairs. (<li>50 est pair</li>, <li>49 est impair</li>, ...)
+
+
+---
+
+
+4. Créez 2 fonctions de validation de formulaire et gardez-les précieusement ; )
+isPositiveTinyInt() qui renvoi un Booléen d'après que le paramètre est ou pas un chiffre entre 0 et 255 inclus. 
+isTinyInt() qui renvoi un Booléen d'après que le paramètre est ou pas un chiffre entre -128 et 127 inclus.
+Testez-les plusieurs fois avec des valeurs différentes et var_dump().
+
+Challenge : La fonction isTinyInt() doit fonctionner que le paramètre soit une String, un Integer ou un Float.
+
+Tips : casting via $var nombre = (int) $monParam; et is_numeric()
+
+
+---
+
+
+5. Créez un script PHP qui affiche le jour de la semaine en lettres. Par exemple 'Nous sommes un mardi'.  
+Tips : Array ou switch + function date()
+
+
+---
+
+
+6. Créez un formulaire avec un input dans lequel on peut encoder un prix et un menu déroulant qui offre le choix entre 3 taux de TVA et créez le script PHP qui calcul le montant avec TVA.
+
+
+---
+
+
+7. Créez un formulaire de contact (input pour email, textarea pour message et button pour envoyer) qui envoi un mail au webmaster
+
+Challenge : le mail contient aussi l'IP et le navigateur du visiteur -> $_SERVER 
+ 
+
+---
+
+
+8. Créez une page web qui a deux feuilles de style CSS (jour.css et nuit.css) et qui en choisit l'une ou l'autre en fonction de l'heure. 
+(uniquement au chargement de la page).
+
+
+---
+
+
+9. Utilisez jQuery datepicker pour choisir une date via un calendrier dans un formulaire et insérez-la dans une DB
+
+Hardcore : valider la date avant de l'insérer : elle doit être bien formatée et valide 
+-> datetime par ex. une regular expression peut être une autre solution
+
+
+---
+
+
+10. Créez 2 pages : 
+La première liste toutes les entrées d'une DB avec un lien dynamique avec un id passé en GET (par ex. detail.php?id=42).
+La deuxième contient un formulaire prérempli (input + menu déroulant + checkbox) avec les données obtenues via GET et permet une mise à jour de ces valeurs dans la DB.
+
+
+---
+
+Challenge : Vérifiez la validité du paramètre en GET (Primary Key donc un chiffre entier positif)
+
+Hardcore : Vérifiez la validité du paramètre en GET (uniquement une PK qui existe dans la  DB + redirection en cas de problème)
+Tips : header() + ob_start() + ob_flush()
+
+  
+ 
