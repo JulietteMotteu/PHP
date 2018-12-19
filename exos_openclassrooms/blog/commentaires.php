@@ -1,6 +1,6 @@
 <?php
 try {
-    $bdd = new PDO('mysql:host=localhost;dbname=test', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+    $bdd = new PDO('mysql:host=localhost;dbname=oc', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 }
 catch (Exception $e) {
     die ('Erreur : ' . $e->getMessage());
@@ -51,7 +51,7 @@ if(isset($_GET['id']) && is_int((int)($_GET['id']))) {
     $statement->closeCursor();
     ?>
     
-    <form action="commentaires-post.php" method="post">
+    <form action="commentaires-post.php?id=<?php echo $comment->id_billet; ?>" method="post">
         <label for="auteur">Pseudo</label>
         <input type="text" name="auteur">
         <label for="message">Message</label>
