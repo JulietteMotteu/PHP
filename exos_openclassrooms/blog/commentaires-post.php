@@ -16,4 +16,4 @@ if(isset($_GET['id'], $_POST['auteur'], $_POST['message']) && is_int((int)$_GET[
 }
 
 
-header('Location: ./commentaires.php');
+//header('Location: ./commentaires.php');
