@@ -9,6 +9,7 @@ catch (Exception $e) {
 $statement = $bdd->query('SELECT *, DATE_FORMAT(date_creation, "%d/%m/%y à %Hh%imin%ss") AS date_billet FROM billets ORDER BY date_creation DESC');
 $data = $statement->fetchAll(PDO::FETCH_CLASS);
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +25,7 @@ $data = $statement->fetchAll(PDO::FETCH_CLASS);
         ?>
         <h3><?php echo htmlspecialchars($billet->titre); ?><em> le <?php echo $billet->date_billet; ?></em></h3>
         <p><?php echo htmlspecialchars($billet->contenu); ?></p> 
-        <a href="./commentaires.php?id=<?php echo $billet->id; ?>">Commentaires</a>
+        <a href="./commentaires.php?id=<?php echo $billet->id; ?>&amp;page=1">Commentaires</a>
     
     <?php
     }
