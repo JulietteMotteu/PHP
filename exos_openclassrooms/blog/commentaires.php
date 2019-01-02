@@ -16,15 +16,20 @@ if(isset($_GET['id']) && is_int((int)($_GET['id']))) {
     $statement->closeCursor();
     
     // Récupérer le billet
-    $statement = $bdd->prepare('SELECT *, DATE_FORMAT(date_creation, "%d/%m/%y à %Hh%imin%ss") AS date_billet FROM billets WHERE id = :id LIMIT ');
+    $statement = $bdd->prepare('SELECT *, DATE_FORMAT(date_creation, "%d/%m/%y à %Hh%imin%ss") AS date_billet FROM billets WHERE id = :id');
     $statement->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
     $statement->execute();
     $billet = $statement->fetch();
     $statement->closeCursor();
         
     // Récupérer les commentaires du billet
-    $statement = $bdd->prepare('SELECT *, DATE_FORMAT(date_commentaire, "%d/%m/%y à %Hh%imin%ss") as date FROM commentaires WHERE id_billet = :id ORDER BY date_commentaire ASC');
+    $page_actuelle = (int)($_GET['page']);
+    $nb_billet_page = 3;
+    $premier_billet =  ($page_actuelle - 1) * $nb_billet_page;
+    $statement = $bdd->prepare('SELECT *, DATE_FORMAT(date_commentaire, "%d/%m/%y à %Hh%imin%ss") as date FROM commentaires WHERE id_billet = :id ORDER BY date_commentaire ASC LIMIT :premier_billet, :nb_billet_page');
     $statement->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
+    $statement->bindValue(':premier_billet', $premier_billet, PDO::PARAM_INT);
+    $statement->bindValue(':nb_billet_page',$nb_billet_page, PDO::PARAM_INT);
     $statement->execute();
     $data = $statement->fetchAll(PDO::FETCH_CLASS);
 }
@@ -78,8 +83,9 @@ if(isset($_GET['id']) && is_int((int)($_GET['id']))) {
     
     <?php 
     $page = 1;
+    var_dump($nb_billet);
     for($i = 1; $i<=$nb_billet; $i++) {
-        if($i % 3 == 0) { 
+        if($i % 3 == 1) { 
             echo '<a href="./commentaires.php?id=' . $_GET['id'] . '&amp;page=' . $page . '">' . $page . '</a>';
             $page++;
         }
