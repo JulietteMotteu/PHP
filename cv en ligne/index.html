@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Juliette Motteu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/normalize.css">
+    <link rel="stylesheet" href="./style/style.css">
+</head>
+
+<body>
+   
+    <header>
+        <div id="home">
+            <div>
+                <div>
+                    <h1>Juliette Motteu</h1>
+                    <h2>Front-end Developer</h2>
+                </div>
+                <img src="./img/logo-Juju-final.png" alt="">
+            </div>
+            <nav id="navVerticale">
+               <!-- <img src="./img/logo-Juju-final-petit.png" alt="">-->
+                <ul>
+                    <li><a href="#home">Accueil</a></li>
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#skills">Compétences</a></li>
+                    <li><a href="#parcours">Parcours</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <main>
+       
+        <section id="about">
+           
+            <h3>À propos</h3>
+
+            <p><strong>À la recherche d'un stage</strong></p>
+
+            <p>Jeune front-end developeuse, je me suis découvert une passion pour le monde du web et la programmation grâce à ma formation à Interface3. C'est après une expérience variée que je me suis tournée vers la programmation et plus particulièrement le développement front-end : en effet, cela me permet de combiner ma créativité, ma logique et mon insatiable envie d'apprendre!</p>
+
+            <p>Aujourd'hui j'ai envie de m'investir dans une structure où je pourrai "toucher à tout": programmer en PHP et JavaScript, coder en HTML et CSS et utiliser les outils graphiques Adobe.</p>
+
+        </section>
+        
+        <section id="skills">
+            <h3>Compétences</h3>
+            
+            <div>
+                <div id="code">
+                    <h4>Code</h4>
+                    <ul>
+                        <li>HTML5</li>
+                        <li>CSS3</li>
+                        <li>JavaScript</li>
+                        <li>Node.js</li>
+                        <li>jQuery</li>
+                        <li>PHP</li>
+                        <li>SQL</li>
+                        <li>Wordpress</li>
+                        <li>Drupal</li>
+                        <li>Sass</li>
+                        <li>Git</li>
+                    </ul>
+                </div>
+                
+                <div id="graphisme">
+                    <h4>Graphisme</h4>
+                    <ul>
+                        <li>Photoshop</li>
+                        <li>Illustrator</li>
+                        <li>InDesign</li>
+                        <li>Animate</li>
+                        <li>Adobe XD</li>
+                    </ul>
+                </div>
+            </div>
+            
+        </section>
+
+        <section id="parcours">
+
+            <h3>Parcours</h3>
+
+                <h4>Formation</h4>
+
+                <div>
+                    <p>2018</p>
+                    <p>Front-End Web Developer</p>
+                    <p>Interface3</p>
+                </div>
+
+                <div>
+                    <p>2018</p>
+                    <p>Formation Illustrator &amp; Indesign</p>
+                    <p>ADN Technologies</p>
+                </div>
+
+                <div>
+                    <p>2017</p>
+                    <p>Start &amp; Code</p>
+                    <p>Interface3</p>
+                </div>
+
+                <div>
+                    <p>2017</p>
+                    <p>Formation Photoshop</p>
+                    <p>Réseau Formation</p>
+                </div>
+
+                <div>
+                    <p>2016-en cours</p>
+                    <p>Cours du soir en Bijouterie</p>
+                    <p>Institut Jeanne Toussaint</p>
+                </div>
+
+                <div>
+                    <p>2011</p>
+                    <p>Master en Psychologie Clinique</p>
+                    <p>Université Libre de Bruxelles</p>
+                </div>
+
+                <h4>Expérience</h4>
+
+        </section>
+
+        <section></section>
+
+        <section></section>
+
+        <section></section>
+
+        <section></section>
+
+        <section></section>
+
+    </main>
+
+    <footer>
+    
+
+    </footer>
+    <script>
+        function positionNav() {
+            let hauteurFenetre = window.innerHeight;
+            let hauteurNav = navVerticale.offsetHeight;
+            let lien = navVerticale.getElementsByTagName('li');
+
+            if (hauteurFenetre > hauteurNav) {
+                navVerticale.style.top = (hauteurFenetre - hauteurNav)/2 + "px";
+                console.log(navVerticale.style.top);
+                for (let i=0; i<lien.length; i++) {
+                    lien[i].style.writingMode = "vertical-rl";
+                }
+            }
+            else {
+                navVerticale.style.top = "20px";
+                for (let i=0; i<lien.length; i++) {
+                    lien[i].style.writingMode = "horizontal-tb";
+                }
+            }
+        }
+        positionNav();
+        
+        window.addEventListener('resize', function(e){
+            positionNav();
+        });
+        
+        let liens = navVerticale.getElementsByTagName('li');
+        
+    /*    if (liens[i].style.writingMode == "horizontal-tb") {
+            for (let i=0; i<liens.length; i++) {
+                
+            }
+        }*/
+        
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800,900");
+@import url("https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,600,700,800,900");
+@font-face {
+  font-family: nevis;
+  src: url(../fonts/nevis.ttf); }
+/*$greentr: rgba(144, 238, 144, 0.79);*/
+#about h3::after, #skills h3::after, #parcours h3::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  height: 8px;
+  width: 100%;
+  background-color: #94a627; }
+
+html {
+  font-size: 100%;
+  font-family: Montserrat;
+  color: #424242;
+  font-weight: normal; }
+
+* {
+  box-sizing: border-box; }
+
+#home {
+  display: flex;
+  justify-content: space-between; }
+
+#home > div {
+  padding: 20px;
+  background-color: #2a590c;
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  height: 100vh;
+  width: 92%;
+  color: white;
+  background-attachment: fixed;
+  position: relative; }
+  #home > div > div {
+    z-index: 9999;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 20px;
+    font-family: Raleway; }
+    #home > div > div h1 {
+      font-weight: 500;
+      margin-left: auto;
+      margin-right: auto;
+      text-transform: uppercase;
+      margin-top: 0;
+      font-size: 4rem;
+      letter-spacing: 5px;
+      padding: 0; }
+    #home > div > div h2 {
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      font-weight: 300;
+      letter-spacing: 20px; }
+  #home > div img {
+    position: absolute;
+    top: 20vh;
+    margin-left: calc(50% - 85.5px); }
+
+img {
+  margin: 0; }
+
+nav {
+  margin-right: 20px;
+  position: fixed;
+  right: 20px; }
+  nav ul {
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; }
+    nav ul li {
+      list-style-type: none;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      padding-top: 15px;
+      padding-bottom: 15px; }
+      nav ul li a {
+        height: 20px;
+        color: #8132bc;
+        font-weight: 500;
+        font-size: 15px;
+        text-decoration: none;
+        text-transform: uppercase;
+        position: relative; }
+      nav ul li a::before {
+        z-index: -1;
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -8px;
+        background: rgba(148, 166, 39, 0.65);
+        width: 150%;
+        height: 0; }
+      nav ul li a:hover {
+        background-size: 100% 100%; }
+      nav ul li a:hover::before {
+        z-index: -1;
+        height: 100%;
+        transition: height 0.5s; }
+
+section {
+  width: 90%;
+  margin-left: 10vh;
+  margin-top: 10vh;
+  margin-bottom: 20vh;
+  font-size: 15px;
+  padding-top: 50px; }
+
+h3 {
+  font-size: 18px;
+  color: #8132bc;
+  text-transform: uppercase;
+  font-weight: 500; }
+
+p {
+  text-align: justify; }
+
+#about {
+  width: 50%; }
+  #about h3 {
+    font-size: 50px;
+    font-weight: 700;
+    position: relative;
+    width: 100%;
+    text-align: right;
+    margin-bottom: 50px; }
+  #about p {
+    margin-top: 20px; }
+
+#skills {
+  margin-top: 100px;
+  display: flex;
+  width: 70%; }
+  #skills h3 {
+    width: 60vh;
+    transform: rotate(270deg);
+    text-align: center;
+    position: relative; }
+  #skills > div {
+    display: flex; }
+    #skills > div > div {
+      margin-left: 100px; }
+    #skills > div ul {
+      padding-left: 0; }
+    #skills > div li {
+      list-style-type: none; }
+
+#parcours {
+  padding-top: 50px; }
+  #parcours h3 {
+    position: relative;
+    margin-bottom: 50px; }
+  #parcours p {
+    margin-top: 20px; }
