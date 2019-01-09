@@ -85,15 +85,15 @@ nav {
     justify-content: space-around; }
     nav ul li {
       list-style-type: none;
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
       padding-top: 15px;
-      padding-bottom: 15px; }
+      padding-bottom: 15px;
+      writing-mode: vertical-rl;
+      text-orientation: mixed; }
       nav ul li a {
         height: 20px;
         color: #8132bc;
         font-weight: 500;
-        font-size: 15px;
+        font-size: 2vh;
         text-decoration: none;
         text-transform: uppercase;
         position: relative; }
@@ -130,6 +130,7 @@ h3 {
 p {
   text-align: justify; }
 
+/* Section about */
 #about {
   width: 50%; }
   #about h3 {
@@ -142,6 +143,7 @@ p {
   #about p {
     margin-top: 20px; }
 
+/* Section skills */
 #skills {
   margin-top: 100px;
   display: flex;
@@ -160,6 +162,7 @@ p {
     #skills > div li {
       list-style-type: none; }
 
+/* Section parcours */
 #parcours {
   padding-top: 50px; }
   #parcours h3 {
@@ -167,3 +170,5 @@ p {
     margin-bottom: 50px; }
   #parcours p {
     margin-top: 20px; }
+
+/*# sourceMappingURL=style.css.map */

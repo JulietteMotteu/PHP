@@ -28,8 +28,7 @@
                 <img src="./img/logo-Juju-final.png" alt="">
             </div>
             <nav id="navVerticale">
-               <!-- <img src="./img/logo-Juju-final-petit.png" alt="">-->
-                <ul>
+                <ul id="listeNav">
                     <li><a href="#home">Accueil</a></li>
                     <li><a href="#about">À propos</a></li>
                     <li><a href="#skills">Compétences</a></li>
@@ -133,10 +132,11 @@
                     <p>Master en Psychologie Clinique</p>
                     <p>Université Libre de Bruxelles</p>
                 </div>
+        </section>
 
                 <h4>Expérience</h4>
 
-        </section id="portfolio">
+        <section id="portfolio">
             <h3>Portfolio</h3>
         </section>
 
@@ -171,6 +171,7 @@
             }
             else {
                 navVerticale.style.top = "20px";
+                listeNav.style.flexDirection = "row";
                 for (let i=0; i<lien.length; i++) {
                     lien[i].style.writingMode = "horizontal-tb";
                 }
@@ -180,16 +181,7 @@
         
         window.addEventListener('resize', function(e){
             positionNav();
-        });
-        
-        let liens = navVerticale.getElementsByTagName('li');
-        
-    /*    if (liens[i].style.writingMode == "horizontal-tb") {
-            for (let i=0; i<liens.length; i++) {
-                
-            }
-        }*/
-        
+        }); 
     
     </script>
 </body>
