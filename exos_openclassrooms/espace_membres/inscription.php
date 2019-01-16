@@ -9,33 +9,52 @@ catch (Exception $e) {
 // Regex Email
 $regexEmail = "#^[a-z0-9.-_]+@[a-z0-9.-_]{2,}\.[a-z]{2,4}$#";
 
-// Vérification de la validité des informations
+// Vérification de la validité des informations + insertion nouvel utilisateur dans la DB
 if(isset($_POST['pseudo'], $_POST['password'], $_POST['passwordConfirm'], $_POST['email'])) {
+    
+    // Vérfication faille XSS
+    $pseudo =  htmlspecialchars($_POST['pseudo']);
+    $password = htmlspecialchars($_POST['password']);
+    $passwordConfirm = htmlspecialchars($_POST['passwordConfirm']);
+    $email = htmlspecialchars($_POST['email']);
+    
+    // On regarde si le pseudo est déjà utilisé
     $statement = $bdd->prepare('SELECT pseudo FROM membres WHERE UPPER(pseudo) = UPPER(:pseudo)');
-    $statement->bindValue(':pseudo', $_POST['pseudo'], PDO::PARAM_STR);
+    $statement->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
     $statement->execute();
     $pseudoVerify = $statement->fetchAll();
     
     $statement->closeCursor();
     
-    if(empty($pseudoVerify && $_POST['password'] == $_POST['passwordConfirm']) && preg_match($regexEmail, $_POST['mail'])) {
+    // On vérifie si les infos sont conformes
+    if(empty($pseudoVerify) && $password == $passwordConfirm && preg_match($regexEmail, $email)) {
+        
+        // Hachage du mot de passe
+        $pass_hache = password_hash($password, PASSWORD_DEFAULT);
+        
+        // Si oui, on insère le nouveau membre dans la DB
         $statement = $bdd->prepare('INSERT INTO membres(pseudo, pass, email, date_inscription) VALUES(:pseudo, :pass, :email, CURDATE())');
-        $statement->bindValue(':pseudo', htmlspecialchars($_POST['pseudo']), PDO::PARAM_STR);
-        $statement->bindValue(':pass', htmlspecialchars($_POST['password']), PDO::PARAM_STR);
-        $statement->bindValue(':email', htmlspecialchars($_POST['email']), PDO::PARAM_STR);
+        $statement->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
+        $statement->bindValue(':pass', $pass_hache, PDO::PARAM_STR);
+        $statement->bindValue(':email', $email, PDO::PARAM_STR);
+        $statement->execute();
+        $statement->closeCursor();
+        
+        echo 'Vous êtes maintenant inscrit!';
+    }
+    elseif (!empty($pseudoVerify)) {
+        echo 'Ce pseudo est déjà utilisé';
+    }
+    elseif ($password != $passwordConfirm) {
+        echo 'Les mots de passe ne sont pas identiques';
+    }
+    elseif (!preg_match($regexEmail, $email)) {
+        echo 'L\'adresse mail n\'est pas valide';
     }
 }
-
-// Hachage du mot de passe
-/*$pass_hache = password_hash($_POST['pass'], PASSWORD_DEFAULT);
-
-
-// Insertion
-$req = $bdd->prepare('INSERT INTO membres(pseudo, pass, email, date_inscription) VALUES(:pseudo, :pass, :email, CURDATE())');
-$req->execute(array(
-    'pseudo' => $pseudo,
-    'pass' => $pass_hache,
-    'email' => $email));*/
+else {
+    echo "Veuillez remplir tous les champs";
+}
 ?>
 
 <!DOCTYPE html>
@@ -81,7 +100,7 @@ $req->execute(array(
        </div>
        <div>
             <label for="passwordConfirm">Confirmation</label>
-           <input type="text" name="passwordConfirm">
+           <input type="password" name="passwordConfirm">
        </div>
        <div>
            <label for="email">Email</label>
