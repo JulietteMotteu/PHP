@@ -7,14 +7,40 @@ catch (Exception $e) {
 }
 
 if(isset($_POST['pseudo'], $_POST['password'])) {
-    $statement = $bdd->prepare('SELECT id, pass FROM membres WHERE pseudo = :pseudo');
+    $statement = $bdd->prepare('SELECT id, pseudo, pass FROM membres WHERE UPPER(pseudo) = UPPER(:pseudo)');
     $statement->execute(array(
         'pseudo' => $_POST['pseudo']));
     
-    $reponse = $statement->fetchAll();
-    var_dump($reponse['pass']);
+    $reponse = $statement->fetch();
+    var_dump($reponse);
+    
     // Vérification mot de passe inséré / DB
     $isPasswordCorrect = password_verify($_POST['password'], $reponse['pass']);
+    
+    if(!$reponse) {
+        echo 'Mauvais mot de passe ou identifiant';
+    }
+    else {
+        if ($isPasswordCorrect) {
+            session_start();
+            $_SESSION['pseudo'] = $reponse['pseudo'];
+            $_SESSION['id'] = $reponse['id'];
+            // Création des cookies
+            echo 'Vous êtes connecté';
+            if(isset($_POST['auto'])) {
+                setcookie('pseudo', $reponse['pseudo'], time() + 10*60, null, null, false, true);
+                setcookie('pass', $reponse['pass'], time() + 10*60, null, null, false, true);
+            }
+        }
+        else {
+            echo 'Mauvais mot de passe ou identifiant';
+        }
+    }
+}
+
+if(isset($_COOKIE['pseudo'], $_COOKIE['pass'])) {
+    session_start();
+    echo 'Bonjour ' . $_COOKIE['pseudo'];
 }
 
 ?>
@@ -48,6 +74,11 @@ if(isset($_POST['pseudo'], $_POST['password'])) {
     </style>
 </head>
 <body>
+  
+    <nav>
+        <li><a href="connexion.php">Connexion</a></li>
+        <li><a href="inscription.php">Inscription</a></li>
+    </nav>
    
     <form action="" method="post">
        
@@ -66,6 +97,13 @@ if(isset($_POST['pseudo'], $_POST['password'])) {
       
     <button type="submit">Connexion</button>
        
+    <a href="deconnexion.php">Déonnexion</a>
+    <?php 
+        if (!isset($_SESSION['pseudo'])) {
+            echo 'Déconnecté';
+        }
+        
+    ?>
     </form>
     
 </body>
